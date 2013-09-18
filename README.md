@@ -1,4 +1,4 @@
 CloudUtils
 ==========
 
-This is some example code about hadoop/hbase/hive etc.
+This is some example codes about hadoop/hbase/hive etc.
