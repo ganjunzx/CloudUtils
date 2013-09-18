@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+bin=`dirname "$0"`
+bin=`cd "$bin"; pwd`
+. "$bin"/env.sh
+. "$bin"/${PROJECT}-config.sh
+
+if [ -f "${PROJECT_CONF_DIR}/${PROJECT}-env.sh" ]; then
+        . "${PROJECT_CONF_DIR}/${PROJECT}-env.sh"
+fi
+
+SERVICE=""
+HELP=""
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --service)
+        shift
+        SERVICE=$1
+        shift
+        ;;
+    --help)
+        HELP=_help
+        shift
+        ;;
+    *)
+        break
+        ;;
+    esac
+done
+
+
+if [ "$SERVICE" = "" ] ; then
+    if [ "$HELP" = "_help" ] ; then
+        SERVICE="help"
+    else
+        SERVICE="jobinfo"
+    fi
+fi
+
+
+# Add jars from hive lib directory
+
+PROJECT_LIB="${PROJECT_HOME}/lib"
+
+if [ -d "${PROJECT_LIB}" ]; then
+    for f in ${PROJECT_LIB}/*.jar; do
+        if [[ ! -f $f ]]; then
+            continue;
+        fi
+        CLASSPATH=$f:${CLASSPATH}
+    done
+fi
+if find ${PROJECT_HOME} -name ${PROJECT}*.jar >& /dev/null; then
+        PROJECT_JAR=`find ${PROJECT_HOME} -name ${PROJECT}*.jar | head -1`
+fi
+
+CLASSPATH=$PROJECT_JAR:$CLASSPATH:.
+
+SERVICE_LIST=""
+
+for i in "$bin"/ext/*.sh ; do
+    . $i
+done
+
+for i in "$bin"/ext/util/*.sh ; do
+    . $i
+done
+
+TORUN=""
+for j in $SERVICE_LIST ; do
+    if [ "$j" = "$SERVICE" ] ; then
+        TORUN=${j}$HELP
+    fi
+done
+
+if [ "$TORUN" = "" ]; then
+    echo "Service $SERVICE not found"
+    echo "Available Services: $SERVICE_LIST"
+    exit 7
+else
+    $TORUN "$@"
+fi
