@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <copy todir="/home/ganjun/soft/study_soft/CloudUtils/hbasedemo/hbasedemo-api/../lib" file="/home/ganjun/soft/study_soft/CloudUtils/hbasedemo/hbasedemo-api/target/paic-hbasedemo-api-1.0-131025.jar" overwrite="true"/>
+</target>
+</project>

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+bin=`dirname "$0"`
+bin=`cd "$bin"; pwd`
+
+. "$bin"/project-config.sh
+
+if [ -f "${PROJECT_CONF_DIR}/project-env.sh" ]; then
+        . "${PROJECT_CONF_DIR}/project-env.sh"
+fi
+
+CLASS=com.paic.hbasedemo.api.core.HBaseDemoApi
+PROJECT_SERVER_PORT=${PROJECT_SERVER_PORT:-9092}
+
+PROJECT_LOG_DIR=${PROJECT_LOG_DIR:-${PROJECT_HOME}/log}
+
+if ! [ -d ${PROJECT_LOG_DIR} ]; then
+    mkdir ${PROJECT_LOG_DIR}
+fi
+
+PROJECT_SERVER_LOG="${PROJECT_LOG_DIR}/server.log"
+
+exec $PROJECT_HOME/bin/run.sh $CLASS "$@"
+
+echo "Project started, Port: Logging to ${PROJECT_SERVER_LOG}"

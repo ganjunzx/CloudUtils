@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <delete includeemptydirs="true">
+    <fileset dir="/home/ganjun/soft/study_soft/CloudUtils/hbasedemo/lib" excludes="**/hbase-*.jar" includes="**/*"/>
+  </delete>
+</target>
+</project>

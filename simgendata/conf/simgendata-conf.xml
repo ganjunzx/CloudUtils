@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<property>
+  <name>localhost</name>
+  <value>0</value>
+  <description>point at the node about the simulated data</description>
+</property>
+
+<property>
+  <name>huge.src.nokiasimens.gdrinterval</name>
+  <value>300</value>
+  <description>general gdr's time interval,unit s</description>
+</property>
+
+<property>
+  <name>huge.src.gw.number</name>
+  <value>4</value>
+  <description>general gdr's gw numbers, example 40,than ,GW01-GW40</description>
+</property>
+
+<property>
+  <name>huge.etl.system.run</name>
+  <value>true</value>
+  <description>if etl system can run, used for gracefully exit (true, false)</description>
+</property>
+
+<property>
+  <name>huge.src.gen.files.maxnum</name>
+  <value>5</value>
+  <description>simGen will generate the specified max number of src gdr files</description>
+</property>
+
+<property>
+  <name>huge.src.record.timestamp.iscurrent</name>
+  <value>true</value>
+  <description>if true, the timeStamp of the src gdr's record will be current time, else false, the timeStamp will be random time from "begin" to "end"</description>
+</property>
+
+<!--if huge.src.record.timestamp.iscurrent = true, the below is invalid. -->
+<property>
+  <name>huge.src.record.timestamp.begin</name>
+  <value>20100201</value>
+</property>
+
+<property>
+  <name>buge.src.record.timestamp.end</name>
+  <value>20100501</value>
+</property>
+
+
+
+</configuration>

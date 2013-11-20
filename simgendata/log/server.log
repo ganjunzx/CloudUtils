@@ -1,0 +1,12 @@
+Exception in thread "main" java.io.IOException: Error opening job jar: com.paic.simgendata.core.FirstSimGenToFile
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:135)
+Caused by: java.util.zip.ZipException: error in opening zip file
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:127)
+	at java.util.jar.JarFile.<init>(JarFile.java:135)
+	at java.util.jar.JarFile.<init>(JarFile.java:72)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:133)
+arguements: <outDir> <fileRows> <msPerfix> <msRange> <rowsPerSec> <grain> <dispRows>
+FirstSimGenToFile /nuoxi 61000 0 0 61000 61000 61000
+FirstSimGenToFile /nuoxi 100 0 0 100 100 100
+
